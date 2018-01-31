@@ -16,8 +16,9 @@ def meloninfo(melonname):
 	if melonname.lower() not in ('watermelon', 'cantelope', 'honeydew', 'mountaindew'):
 		res = '%s is not a melon!!' % melonname
 	else:
-		res= '<h2> %s is a very fancy melon<h2>' % melonname
-	return res
+		res= ' %s is a very fancy melon' % melonname
+	return render_template("profile.html",output1=res)
+
 	
 if __name__ == "__main__":
 	app.run(debug=True)
