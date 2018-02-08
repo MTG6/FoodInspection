@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return 'This is the homepage'
+	return 'This is the melon homepage'
 
 @app.route('/melons')
 def melons():
