@@ -5,18 +5,18 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return 'This is the melon homepage'
+	return 'This is the Food Inspection homepage'
 
-@app.route('/melons')
+@app.route('/UserInformation')
 def melons():
-	return 'My favorite melons are: Watermelon, Cantelope, HoneyDew, and MountainDew'	
+	return 'Please enter your restuarant type.'	
 
-@app.route('/melons/<melonname>')
-def meloninfo(melonname):
-	if melonname.lower() not in ('watermelon', 'cantelope', 'honeydew', 'mountaindew'):
-		res = '%s is not a melon!!' % melonname
+@app.route('/UserInformation/<restype>')
+def meloninfo(restype):
+	if restype.lower() not in ('italian', 'mexican', 'barbacue', 'sushi'):
+		res = '%s YOU FAIL !!' % melonname
 	else:
-		res= ' %s is a very fancy melon' % melonname
+		res= 'A %s restuarant should pass.' % restype
 	return render_template("profile.html",output1=res)
 
 	
