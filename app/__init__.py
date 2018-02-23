@@ -9,4 +9,4 @@ app = Flask(__name__)
 app.config.from_envvar('MSIA_SETTINGS', silent=True)
 
 # Initialize the database
-db = SQLAlchemy(application)
+db = SQLAlchemy(app)

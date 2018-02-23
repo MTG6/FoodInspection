@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+from sqlalchemy import create_engine
 
 def feature_creation(df):
 	""" Take the raw dataframe from import, generate features for analysis
@@ -17,7 +18,7 @@ def feature_creation(df):
 	crt = [] #List of critical infractions
 	ser = [] #List of serious infractions
 	mnr = [] #List of minor infractions
-	cols = range(5,len(df.columns)) #Range of columns to include in database
+	
 
 	#Isolate infraction Numbers and their bucket
 	while i < len(df):
@@ -42,11 +43,16 @@ def feature_creation(df):
 	df['infracs_critical']=crt
 	
 	#Remove unnecessary columns
+	cols = range(5,len(df.columns)) #Range of columns to include in database
 	df_f = df.iloc[:,cols]
-	df_f = df_f.drop(['location','violations'], axis =1)
+	df_f = df_f.drop(['location','violations','address','aka_name'], axis =1)
 	
 	print(df_f.columns)
 	return df_f
 
 if __name__ == "__main__":
     feature_creation()
+    
+    
+
+    
