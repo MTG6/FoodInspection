@@ -5,4 +5,7 @@
 !.elasticbeanstalk/*.global.yml
 .devinfo
 config.py
-develop/FoodInspect.db
+FoodInspect.db
+develop/__pycache__/*
+develop/.ipynb_checkpoints/*
+develop/msiaLab_sphinx/*
