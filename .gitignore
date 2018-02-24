@@ -7,5 +7,9 @@
 config.py
 FoodInspect.db
 develop/__pycache__/*
-develop/.ipynb_checkpoints/*
+data/__pycache__/*
+develop/notebooks/.ipynb_checkpoints/*
 develop/msiaLab_sphinx/*
+Model.pickle
+FI.sublime-workspace
+data/load_data.sublime-workspace

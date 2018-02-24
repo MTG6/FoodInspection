@@ -5,6 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 import sqlite3
 
+
+
 if __name__ == "__main__":
 	
 	#Set up SQLAlchemy
@@ -20,9 +22,15 @@ if __name__ == "__main__":
 	df = ld.load_data()
 	df_f = fc.feature_creation(df)
 	
+	#Try to pickle
+	from develop import train_model as tm
+	tm.train_model(df_f)
+	
+	
 	#Try to create DB
-	engine = create_engine('sqlite:////FoodInspect.db')
-	df_f.to_sql("Inspections",engine, if_exists="replace")
+	#engine = create_engine('sqlite:////FoodInspect.db')
+	#conn = engine.connect()
+	#df_f.to_sql("Inspections",conn, if_exists="replace")
 	
 
 

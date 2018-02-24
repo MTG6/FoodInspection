@@ -1,7 +1,28 @@
 <!doctype html>
 <link rel="stylesheet" type="text/css" href="/static/style.css">
-<title>Can you pass the melon test?</title>
-<h1>{{ output1 }} </h1>
+<title>Food Inspection</title>
+<h1> {{ output1 }} </h1>
 
 
-<input type="button" class="button" value="Enter New Infomation">
+<form action="{{ url_for('addRestaurant') }}" method="post">
+  Minor Infractions:<br>
+  <input type="integer" name="m_infracs"><br>
+  
+  Serious Infractions:<br>
+  <input type="integer" name="s_infracs"><br>
+  
+  Critical Infractions:<br>
+  <input type="integer" name="c_infracs"><br>
+  
+  Zipcode:<br>
+  <input type="integer" name="zip"><br>
+  
+  Risk Category:<br>
+  <input type="str" name="risk"><br>
+  
+  Type of Inspection:<br>
+  <input type="str" name="type"><br>
+  
+  <input type="submit" value="Submit">
+</form>
+
