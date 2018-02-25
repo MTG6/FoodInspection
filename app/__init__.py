@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # config
-app.config.from_envvar('MSIA_SETTINGS', silent=True)
+#app.config.from_envvar('MSIA_SETTINGS', silent=True)
 
 # Initialize the database
-db = SQLAlchemy(app)
+#db = SQLAlchemy(app)

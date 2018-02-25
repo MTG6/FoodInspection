@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from app import app
+from develop.train_model import model_reqs
 import pickle
 import pandas as pd
 
-app = Flask(__name__)
-model = pickle.load(open('/Users/matthewgallagher/MSiA/Winter_2018/MSIA_423/FoodInspection/Model.pickle','rb'))
+#Unpack pickle
+model_ = pickle.load(open('/Users/matthewgallagher/MSiA/Winter_2018/MSIA_423/FoodInspection/ModelSpec.pickle','rb'))
+model = model_.model
+specs = model_.specs
 
 #Homepage
 @app.route('/')
@@ -45,17 +49,42 @@ def addRestaurant():
 	if type == 'complaint':
 		complaint = 1
 	
-	#Create prediction input
+	
+	zcodes = specs[12:len(specs)]
+	input2=[]
+	for zcode in zcodes:
+		if zip == int(zcode):
+			input2.append(1)
+		else:
+			input2.append(0)
+
+	
+	#Create prediction input (legacy)
 	X = pd.DataFrame({'zip' : zip, 'infracs_total' : infracs_total, 'infracs_minor' : minor, \
 	'infracs_serious' : serious, 'infracs_critical' : critical, 'Risk 1 (High)' : highrisk,\
 	'Risk 2 (Medium)' : medrisk,  'Risk 3 (Low)' : lowrisk, 'Canvas' : canvas, \
 	'License' : license, 'Recent Inspection' : recent, 'itype_re' : repeat, \
 	'itype_complaint' : complaint} , index = [1])
 	
-	#Predict outcome
-	outcome = model.predict(X)
+	#Create prediction input (new)
+	input1 = [infracs_total,minor,serious,critical,highrisk,medrisk,lowrisk,canvas,\
+	license,recent,repeat,complaint]
+	input = input1 + input2
 	
-	return 'Your restaurant prediction is... %s' % outcome
+	
+	#Create prediction dataframe
+	X1 = pd.DataFrame(columns=specs)
+	X1.loc[0] = input
+	
+	#Predict outcome
+	outcome = model.predict(X1)
+	
+	if outcome == 1:
+		response = 'pass'
+	if outcome == 0:
+		response = 'fail'
+	
+	return 'Your restaurant is predicted to %s.' % response
 	
 
 if __name__ == "__main__":

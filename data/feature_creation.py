@@ -1,6 +1,5 @@
 import pandas as pd
 import re
-from sqlalchemy import create_engine
 
 #Function for bucketing Pass/Fail Outcomes
 def pass_fail(raw):
@@ -71,17 +70,18 @@ def feature_creation(df):
 	#Convert and bucket categorical to dummies
 	risks = pd.get_dummies(df_f.risk)
 	itype = pd.get_dummies(df_f.inspection_type)
+	zcode = pd.get_dummies(df_f.zip)
 	df_f = df_f.join(risks).join(itype)
 	df_f['itype_re'] = round((df_f['Canvass Re-Inspection']+df_f['Complaint Re-Inspection']+df_f['License Re-Inspection']+.6)/3)
 	df_f['itype_complaint'] = round((df_f['Short Form Complaint']+df_f['Complaint']+.1)/2)
 	df_f.itype_re = df_f.itype_re.astype(int)
 	df_f.itype_complaint = df_f.itype_complaint.astype(int)
+	df_f = df_f.join(zcode)
 	
 	#Drop bucketed variables
-	df_f = df_f.drop(['inspection_type','facility_type','inspection_date','license_','Canvass Re-Inspection','Complaint','Complaint Re-Inspection','License Re-Inspection','Short Form Complaint','risk'], axis=1)
+	df_f = df_f.drop(['inspection_type','facility_type','inspection_date','license_','Canvass Re-Inspection','Complaint','Complaint Re-Inspection','License Re-Inspection','Short Form Complaint','risk','zip'], axis=1)
 	
 	
-	print(df_f.columns)
 	return df_f
 
 if __name__ == "__main__":

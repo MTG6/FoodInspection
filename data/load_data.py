@@ -15,7 +15,7 @@ def load_data():
 	df = pd.DataFrame(data)
 	df.violations = df.violations.fillna('')
 	
-	print(df.columns)
+	
 	return df
 	
 if __name__ == "__main__":

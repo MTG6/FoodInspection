@@ -6,6 +6,12 @@ from sklearn.cross_validation import train_test_split
 from sklearn.model_selection import cross_val_score
 import pickle
 
+#Create model specification object for pickling
+class model_reqs:
+    def __init__(self, model , specs):
+        self.model = model
+        self.specs = list(specs)
+
 def train_model(df_f):
 	"""Train our logistic classifier model on data frame, create pickle of model
 	
@@ -22,15 +28,18 @@ def train_model(df_f):
 	Y=Y.astype('int')
 	X = df_f.drop(['address','city','inspection_id','dba_name','Pass_Fail','inspection_id'],axis=1)
 
-	print(X.columns)
+	#print(X.columns)
 	
 	#Generate model object
 	clf = linear_model.LogisticRegression()
 	m_fit = clf.fit(X, Y)
 	
+	#Store model and df schema requirements
+	modelspecs = model_reqs(m_fit,X.columns)
+	
 	#Pickle output
-	pickling_on = open("Model.pickle","wb")
-	pickle.dump(m_fit, pickling_on)
+	pickling_on = open("ModelSpec.pickle","wb")
+	pickle.dump(modelspecs, pickling_on)
 	pickling_on.close()
 
 	print("Model has been trained and pickled.")

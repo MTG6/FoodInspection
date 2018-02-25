@@ -3,6 +3,7 @@ from data import feature_creation as fc
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
+from develop import train_model as tm
 import sqlite3
 
 
@@ -22,8 +23,7 @@ if __name__ == "__main__":
 	df = ld.load_data()
 	df_f = fc.feature_creation(df)
 	
-	#Try to pickle
-	from develop import train_model as tm
+	#Pickle
 	tm.train_model(df_f)
 	
 	
