@@ -26,7 +26,7 @@ if __name__ == "__main__":
 	df_f = fc.feature_creation(df)
 	
 	#Pickle
-	tm.train_model(df_f)
+	#tm.train_model(df_f)
 	
 	
 	#Try to create DB
@@ -35,10 +35,13 @@ if __name__ == "__main__":
 	#df_f.to_sql("Inspections",conn, if_exists="replace")
 	#print(pd.read_sql_query("select * from Inspections limit 5;", conn).columns)
 	
-	#Chloe version (AWS)
+	#AWS CONNECTION
 	uri =SQLALCHEMY_DATABASE_URI
 	conn = sqlalchemy.engine.create_engine(uri)
-	df_f.to_sql("Inspections",conn, if_exists="replace")
+	df_f.to_sql("CleanInspections",conn, if_exists="replace")
+	
+	
+	
 	#connection = engine.connect()
 
 	#df_f.to_sql('Inspec', con=connection)
