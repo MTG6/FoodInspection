@@ -1,19 +1,21 @@
 from data import load_data as ld
 from data import feature_creation as fc
+from app import app
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import sqlalchemy
 from sqlalchemy import create_engine
 from develop import train_model as tm
 import sqlite3
+import pandas as pd
 
 
 
 if __name__ == "__main__":
 	
 	#Set up SQLAlchemy
-	app = Flask(__name__)
-	app.config.from_envvar('MSIA_SETTINGS', silent=True)
-	db = SQLAlchemy(app)
+	#app = Flask(__name__)
+	#app.config.from_envvar('MSIA_SETTINGS', silent=True)
+	#db = SQLAlchemy(app)
 	
 	#Create sqlite DB
 	#conn = sqlite3.connect("FoodInspect.db")
@@ -28,10 +30,17 @@ if __name__ == "__main__":
 	
 	
 	#Try to create DB
-	#engine = create_engine('sqlite:////FoodInspect.db')
+	#engine = create_engine('sqlite:////Users/matthewgallagher/MSiA/Winter_2018/MSIA_423/FoodInspection/FoodInspect.db')
 	#conn = engine.connect()
 	#df_f.to_sql("Inspections",conn, if_exists="replace")
+	#print(pd.read_sql_query("select * from Inspections limit 5;", conn).columns)
 	
+	#Chloe version (AWS)
+	uri =SQLALCHEMY_DATABASE_URI
+	conn = sqlalchemy.engine.create_engine(uri)
+	df_f.to_sql("Inspections",conn, if_exists="replace")
+	#connection = engine.connect()
 
+	#df_f.to_sql('Inspec', con=connection)
 
     

@@ -10,6 +10,6 @@ develop/__pycache__/*
 data/__pycache__/*
 develop/notebooks/.ipynb_checkpoints/*
 develop/msiaLab_sphinx/*
-Model.pickle
+ModelSpec.pickle
 FI.sublime-workspace
 data/load_data.sublime-workspace
