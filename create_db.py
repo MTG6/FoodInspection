@@ -40,4 +40,4 @@ if __name__ == "__main__":
 	#print(pd.read_sql_query("select * from CleanInspections limit 5;",conn))
 	
 	#Pickle
-	tm.train_model(pd.read_sql_query("select * from CleanInspections",conn)))
+	tm.train_model(pd.read_sql_query("select * from CleanInspections",conn))
