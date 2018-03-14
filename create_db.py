@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from develop import train_model as tm
 import sqlite3
 import pandas as pd
-
+import config
 
 
 if __name__ == "__main__":
@@ -36,14 +36,8 @@ if __name__ == "__main__":
 	#print(pd.read_sql_query("select * from Inspections limit 5;", conn).columns)
 	
 	#AWS CONNECTION
-	uri =SQLALCHEMY_DATABASE_URI
+	#uri ='mysql+pymysql://mtg6:p&&ssF4!L@foodinspection-db.c9hebod1wl2a.us-west-2.rds.amazonaws.com:3306/foodinspectiondatabase' 
+        uri = config.SQLALCHEMY_DATABASE_URI
 	conn = sqlalchemy.engine.create_engine(uri)
 	df_f.to_sql("CleanInspections",conn, if_exists="replace")
-	
-	
-	
-	#connection = engine.connect()
-
-	#df_f.to_sql('Inspec', con=connection)
-
-    
+        #pd.read_sql_query("select * from CleanInspections limit 5;",conn)
