@@ -5,7 +5,7 @@ import pickle
 import pandas as pd
 
 #Unpack pickle
-model_ = pickle.load(open('/Users/matthewgallagher/MSiA/Winter_2018/MSIA_423/FoodInspection/ModelSpec.pickle','rb'))
+model_ = pickle.load(open('./ModelSpec.pickle','rb'))
 model = model_.model
 specs = model_.specs
 
