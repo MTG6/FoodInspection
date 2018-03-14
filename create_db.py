@@ -37,7 +37,7 @@ if __name__ == "__main__":
 	uri = config.SQLALCHEMY_DATABASE_URI
 	conn = sqlalchemy.engine.create_engine(uri)
 	df_f.to_sql("CleanInspections",conn, if_exists="replace")
-	#print(pd.read_sql_query("select * from CleanInspections limit 5;",conn))
+	print(pd.read_sql_query("select * from CleanInspections limit 5;",conn))
 	
 	#Pickle
 	tm.train_model(pd.read_sql_query("select * from CleanInspections",conn))

@@ -16,3 +16,5 @@ data/load_data.sublime-workspace
 *.cpython-36.pyc
 data/__pycache__/*
 data/__pycache__/load_data.cpython-36.pyc
+load_data.log
+model.log
