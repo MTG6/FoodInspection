@@ -1,14 +1,13 @@
 from data import load_data as ld
 from data import feature_creation as fc
-from app import app
+from app import app , db
 from flask import Flask
 from flask_sqlalchemy import sqlalchemy
 from sqlalchemy import create_engine
 from develop import train_model as tm
 import sqlite3
 import pandas as pd
-import config
-
+from app.config import SQLALCHEMY_DATABASE_URI
 
 if __name__ == "__main__":
 	
@@ -34,7 +33,7 @@ if __name__ == "__main__":
 	
 	#AWS CONNECTION
 	#uri ='mysql+pymysql://mtg6:p&&ssF4!L@foodinspection-db.c9hebod1wl2a.us-west-2.rds.amazonaws.com:3306/foodinspectiondatabase' 
-	uri = config.SQLALCHEMY_DATABASE_URI
+	uri = SQLALCHEMY_DATABASE_URI
 	conn = sqlalchemy.engine.create_engine(uri)
 	df_f.to_sql("CleanInspections",conn, if_exists="replace")
 	print(pd.read_sql_query("select * from CleanInspections limit 5;",conn))
