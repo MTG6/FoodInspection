@@ -37,7 +37,7 @@ if __name__ == "__main__":
 	
 	#AWS CONNECTION
 	#uri ='mysql+pymysql://mtg6:p&&ssF4!L@foodinspection-db.c9hebod1wl2a.us-west-2.rds.amazonaws.com:3306/foodinspectiondatabase' 
-        uri = config.SQLALCHEMY_DATABASE_URI
+	uri = config.SQLALCHEMY_DATABASE_URI
 	conn = sqlalchemy.engine.create_engine(uri)
 	df_f.to_sql("CleanInspections",conn, if_exists="replace")
-        #pd.read_sql_query("select * from CleanInspections limit 5;",conn)
+    print(pd.read_sql_query("select * from CleanInspections limit 5;",conn))
