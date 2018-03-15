@@ -14,17 +14,17 @@ def pass_fail(raw):
 	"""
 	
 	output = []
-    i=0
-    stop = (len(raw))
-    while i < stop:
-        if raw[i] == 'Pass':
-            output.append(1)
-        elif raw[i] == 'Fail':
-            output.append(0)
-        else:
-            output.append('NA')
-        i=i+1
-    return output
+	i=0
+	stop = (len(raw))
+	while i < stop:
+		if raw[i] == 'Pass':
+			output.append(1)
+		elif raw[i] == 'Fail':
+			output.append(0)
+		else:
+			output.append('NA')
+		i=i+1
+	return output
 
 
 def feature_creation(df):
