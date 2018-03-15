@@ -21,7 +21,7 @@ if __name__ == "__main__":
 	conn = sqlalchemy.engine.create_engine(uri)
 	
 	# Find existing Inspection IDs
-	idds = pd.read_sql_query("select UNIQUE inspection_id from CleanInspections", conn)
+	idds = pd.read_sql_query("select DISTINCT inspection_id from CleanInspections", conn)
 	df_fi = df_f[~df_f.inspection_id.isin(idds.inspection_id)]
 	print(len(df_f))
 	print(len(df_fi))
