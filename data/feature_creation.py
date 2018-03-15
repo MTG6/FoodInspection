@@ -3,6 +3,16 @@ import re
 
 #Function for bucketing Pass/Fail Outcomes
 def pass_fail(raw):
+	"""Custom function to binarize outcomes.
+	
+	Args:
+		raw (pd.Series): Pandas Series of Pass/Fail strings.
+		
+	Returns:
+		output (pd.Serires): outputPandas Series of 1/0 ints.
+		
+	"""
+	
     output = []
     i=0
     stop = (len(raw))
@@ -18,7 +28,7 @@ def pass_fail(raw):
 
 
 def feature_creation(df):
-	""" Take the raw dataframe from import, generate features for analysis
+	""" Take the raw dataframe from import, generate features for analysis.
 	
 	Args: 
 	df (DataFrame): DataFrame output from LoadData()

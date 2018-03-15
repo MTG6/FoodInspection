@@ -14,13 +14,13 @@ class model_reqs:
         self.specs = list(specs)
 
 def train_model(df_f):
-	"""Train our logistic classifier model on data frame, create pickle of model
+	"""Train our logistic classifier model on data frame, create pickle of model.
 	
 	Args: 
-	df (DataFrame): DataFrame output from feature_creation.py [or from DB]
+		df_f (DataFrame): DataFrame output from prepare_app.
 	
 	Returns:
-	Print statement acknowledging completed training
+		None
 	
 	"""
 	

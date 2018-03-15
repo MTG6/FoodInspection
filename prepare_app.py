@@ -37,5 +37,6 @@ def prepare_app():
 
 if __name__ == "__main__":
 	logging.basicConfig(filename='app_prep.log',level=logging.DEBUG, format='%(asctime)s %(message)s')
+	logging.debug(' --- Begin app prep.')
 	prepare_app()
-	logging.debug('Completed app prep. ')
+	logging.debug(' --- Completed app prep.')

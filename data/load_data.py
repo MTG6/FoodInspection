@@ -2,11 +2,11 @@ import requests
 import pandas as pd
 
 def load_data():
-	"""Load data from City of Chicago API
-	
-	Load data from JSON, transform to DataFrame, and then fill NA's
-	
-	Returns a Data Frame
+	"""Load data from API(JSON), transform to DataFrame, and then fill NA's.
+	Args:
+		None
+	Returns:
+		df (pd.DataFrame): DataFrame of new inspections from API.
 	
 	"""
 	url_endpoint = 'https://data.cityofchicago.org/resource/cwig-ma7x.json'
