@@ -9,9 +9,9 @@ import sqlite3
 import pandas as pd
 from app.config import SQLALCHEMY_DATABASE_URI
 
-if __name__ == "__main__":
-	
-	
+def prepare_app():
+	"""This initializes and updates the model and data infrastructure."""
+
 	# Import and clean data drame
 	df = ld.load_data()
 	df_f = fc.feature_creation(df)
@@ -27,10 +27,12 @@ if __name__ == "__main__":
 	print(len(df_fi))
 	
 	# Load data into AWS connection
-	# uri ='mysql+pymysql://mtg6:p&&ssF4!L@foodinspection-db.c9hebod1wl2a.us-west-2.rds.amazonaws.com:3306/foodinspectiondatabase' 
-	
 	df_fi.to_sql("CleanInspections",conn, if_exists="append")
 	print(len(pd.read_sql_query("select * from CleanInspections",conn)))
 	
 	# Pickle model
 	tm.train_model(pd.read_sql_query("select * from CleanInspections",conn))
+
+
+if __name__ == "__main__":
+	prepare_app()
