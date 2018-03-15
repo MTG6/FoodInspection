@@ -53,7 +53,7 @@ def addRestaurant():
 	zcodes = specs[12:len(specs)]
 	input2=[]
 	for zcode in zcodes:
-		if zip == int(zcode):
+		if zip == zcode:
 			input2.append(1)
 		else:
 			input2.append(0)
