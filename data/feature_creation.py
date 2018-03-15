@@ -13,7 +13,7 @@ def pass_fail(raw):
 		
 	"""
 	
-    output = []
+	output = []
     i=0
     stop = (len(raw))
     while i < stop:
