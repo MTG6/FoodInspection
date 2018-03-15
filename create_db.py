@@ -16,13 +16,21 @@ if __name__ == "__main__":
 	df = ld.load_data()
 	df_f = fc.feature_creation(df)
 	
+	# Create Connection
+	uri = SQLALCHEMY_DATABASE_URI
+	conn = sqlalchemy.engine.create_engine(uri)
+	
+	# Find existing Inspection IDs
+	idds = pd.read_sql_query("select UNIQUE inspection_id from CleanInspections", conn)
+	df_fi = df_f[~df_f.inspection_id.isin(idds.inspection_id)]
+	print(len(df_f))
+	print(len(df_fi))
 	
 	# Load data into AWS connection
 	# uri ='mysql+pymysql://mtg6:p&&ssF4!L@foodinspection-db.c9hebod1wl2a.us-west-2.rds.amazonaws.com:3306/foodinspectiondatabase' 
-	uri = SQLALCHEMY_DATABASE_URI
-	conn = sqlalchemy.engine.create_engine(uri)
-	df_f.to_sql("CleanInspections",conn, if_exists="replace")
-	print(len(pd.read_sql_query("select * from CleanInspections",conn)))
+	
+	#df_fi.to_sql("CleanInspections",conn, if_exists="append")
+	#print(len(pd.read_sql_query("select * from CleanInspections",conn)))
 	
 	# Pickle model
-	tm.train_model(pd.read_sql_query("select * from CleanInspections",conn))
+	#tm.train_model(pd.read_sql_query("select * from CleanInspections",conn))
