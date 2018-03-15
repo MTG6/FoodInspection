@@ -5,6 +5,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.cross_validation import train_test_split
 from sklearn.model_selection import cross_val_score
 import pickle
+import logging
 
 #Create model specification object for pickling
 class model_reqs:
@@ -27,8 +28,6 @@ def train_model(df_f):
 	Y = df_f['Pass_Fail']
 	Y=Y.astype('int')
 	X = df_f.drop(['address','city','inspection_id','dba_name','Pass_Fail','inspection_id'],axis=1)
-
-	#print(X.columns)
 	
 	#Generate model object
 	clf = linear_model.LogisticRegression()
@@ -42,4 +41,4 @@ def train_model(df_f):
 	pickle.dump(modelspecs, pickling_on)
 	pickling_on.close()
 
-	print("Model has been trained and pickled.")
+	logging.debug(' -- Model has been trained and pickled.')
