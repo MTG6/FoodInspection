@@ -7,7 +7,7 @@ def load_data():
 		None
 	Returns:
 		df (pd.DataFrame): DataFrame of new inspections from API.
-	
+
 	"""
 	url_endpoint = 'https://data.cityofchicago.org/resource/cwig-ma7x.json'
 	response = requests.get(url_endpoint)
