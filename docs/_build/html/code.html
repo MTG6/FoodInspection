@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Ingesting Data &#8212; FoodInspection 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to FI’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-load_data">
+<span id="ingesting-data"></span><h1>Ingesting Data<a class="headerlink" href="#module-load_data" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="load_data.load_data">
+<code class="descclassname">load_data.</code><code class="descname">load_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#load_data.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load data from API(JSON), transform to DataFrame, and then fill NA&#8217;s.
+Args:</p>
+<blockquote>
+<div>None</div></blockquote>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>df (pd.DataFrame): DataFrame of new inspections from API.</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-feature_creation">
+<span id="preprocess-data"></span><h1>Preprocess Data<a class="headerlink" href="#module-feature_creation" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="feature_creation.feature_creation">
+<code class="descclassname">feature_creation.</code><code class="descname">feature_creation</code><span class="sig-paren">(</span><em>df</em><span class="sig-paren">)</span><a class="headerlink" href="#feature_creation.feature_creation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the raw dataframe from import, generate features for analysis.</p>
+<p>Args: 
+df (DataFrame): DataFrame output from LoadData()</p>
+<p>Returns:
+df_f (DataFrame): DataFrame that includes feature generation</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="feature_creation.pass_fail">
+<code class="descclassname">feature_creation.</code><code class="descname">pass_fail</code><span class="sig-paren">(</span><em>raw</em><span class="sig-paren">)</span><a class="headerlink" href="#feature_creation.pass_fail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom function to binarize outcomes.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>raw (pd.Series): Pandas Series of Pass/Fail strings.</dd>
+<dt>Returns:</dt>
+<dd>output (pd.Serires): outputPandas Series of 1/0 ints.</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-train_model">
+<span id="train-model"></span><h1>Train Model<a class="headerlink" href="#module-train_model" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="train_model.train_model">
+<code class="descclassname">train_model.</code><code class="descname">train_model</code><span class="sig-paren">(</span><em>df_f</em><span class="sig-paren">)</span><a class="headerlink" href="#train_model.train_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train our logistic classifier model on data frame, create pickle of model.</p>
+<dl class="docutils">
+<dt>Args: </dt>
+<dd>df_f (DataFrame): DataFrame output from prepare_app.</dd>
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prepare_app">
+<span id="prepare-app"></span><h1>Prepare app<a class="headerlink" href="#module-prepare_app" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="prepare_app.prepare_app">
+<code class="descclassname">prepare_app.</code><code class="descname">prepare_app</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#prepare_app.prepare_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>This initializes and updates the model and data infrastructure.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Ingesting Data</a></li>
+<li><a class="reference internal" href="#module-feature_creation">Preprocess Data</a></li>
+<li><a class="reference internal" href="#module-train_model">Train Model</a></li>
+<li><a class="reference internal" href="#module-prepare_app">Prepare app</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to FI&#8217;s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/code.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Matt.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/code.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
