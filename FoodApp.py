@@ -12,8 +12,8 @@ specs = model_.specs
 #Homepage
 @app.route('/')
 def index():
-	res = 'This is the Food Inspection homepage'
-	return render_template("profile.html" , output1=res)
+	res = 'Food Inspection Outcome Evaluation'
+	return render_template("landing.html" , output1=res)
 
 #Submit user form, store data for predict
 @app.route('/addRestaurant', methods=['POST'])
@@ -84,7 +84,8 @@ def addRestaurant():
 	if outcome == 0:
 		response = 'fail'
 	
-	return 'Your restaurant is predicted to %s.' % response
+	res2 = 'Your restaurant is predicted to %s.' % response
+	return render_template("result.html" , output2=res2)
 	
 
 if __name__ == "__main__":
