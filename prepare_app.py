@@ -28,8 +28,11 @@ def prepare_app():
 	logging.debug(' -- Number of new records: %s', len(df_fi))
 	
 	# Load data into AWS connection
-	df_fi.to_sql("CleanInspections",conn, if_exists="append")
-	logging.debug(' -- Updated number of inspections: %s', len(pd.read_sql_query("select * from CleanInspections",conn)))
+	try:
+		df_fi.to_sql("CleanInspections",conn, if_exists="append")
+		logging.debug(' -- Updated number of inspections: %s', len(pd.read_sql_query("select * from CleanInspections",conn)))
+	except:
+		logging.debug(' -- Update failed.')
 	
 	# Pickle model
 	tm.train_model(pd.read_sql_query("select * from CleanInspections",conn))
