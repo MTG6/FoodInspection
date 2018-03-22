@@ -17,3 +17,6 @@ data/load_data.sublime-workspace
 data/__pycache__/*
 data/__pycache__/load_data.cpython-36.pyc
 app_prep.log
+__pycache__/*
+test/__pycache__/*
+.cache/*
