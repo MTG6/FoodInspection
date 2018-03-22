@@ -1,0 +1,4 @@
+{
+  "test_features.py::test_fc": true,
+  "test_features.py::test_pass_fail": true
+}

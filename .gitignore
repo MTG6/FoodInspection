@@ -1,0 +1,22 @@
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+.devinfo
+config.py
+FoodInspect.db
+develop/__pycache__/*
+data/__pycache__/*
+develop/notebooks/.ipynb_checkpoints/*
+develop/msiaLab_sphinx/*
+ModelSpec.pickle
+FI.sublime-workspace
+data/load_data.sublime-workspace
+*.cpython-36.pyc
+data/__pycache__/*
+data/__pycache__/load_data.cpython-36.pyc
+app_prep.log
+__pycache__/*
+test/__pycache__/*
+.cache/*
