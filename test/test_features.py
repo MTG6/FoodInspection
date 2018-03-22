@@ -13,5 +13,5 @@ def test_pass_fail():
 	assert  fc.pass_fail(testdata)[1] == 1
 	
 def test_fc():
-	data = ld.load_data().iloc[1]
+	data = ld.load_data().iloc[1:2]
 	assert len(fc.feature_creation(data).columns) == 17
